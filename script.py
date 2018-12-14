@@ -71,9 +71,9 @@ def shannon_fano(lst):
     shannon_fano(lst[middle + 1:])
 
 
-def main():
+def processing(text):
     lst = []  # создание пустого списка для сохранения вероятностей вхожжения каждого символа
-    m = input("Сообщение ---> ")  # ввод самого сообщения
+    m = text  # ввод самого сообщения
     s = frozenset(m)  # неизменяемое множество (кортежный словарь)
     for c in s:
         lst.append(Char(c, m.count(c)/len(m)))  # считаем вероятности вхождения каждого символа (создаем объект)
@@ -82,21 +82,4 @@ def main():
     shannon_fano(lst)
     h = 0
     l = 0
-    for c in lst:
-        print(c)
-        h += c.get_freq() * log2(c.get_freq())
-        l += c.get_freq() * len(c.get_code())
-    h = abs(h)
-    print("H_max = {}".format(log2(len(lst))))
-    print("h = {}".format(h))
-    print("l_cp = {}".format(l))
-    try:
-        print("K_c.c. = {}".format(log2(len(lst))/l))
-        print("K_o.э. = {}".format(h / l))
-    except ZeroDivisionError:
-        print('K_c.c. = ∞')
-        print("K_o.э. = ∞")
-
-
-if __name__ == "__main__":
-    main()
+    return lst
